@@ -41,10 +41,10 @@ setup(
 
     keywords='astronomy',  
 
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),  
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']), 
 
+    #install_requires=['peppercorn'],  # Optional
     install_requires=['peppercorn'],  # Optional
 
     # List additional groups of dependencies here (e.g. development
