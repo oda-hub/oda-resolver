@@ -11,6 +11,10 @@ from astropy.time import Time
 
 from tnr.resolvers import RootResolver
 
+@app.route('/')
+def root(name):
+    return jsonify(service='Transient Name Resolver',version=os.environ.get('CONTAINER_VERSION','unknown'))
+
 @app.route('/api/v1.0/byname/<string:name>')
 def resolve(name):
     root_resolver=RootResolver()

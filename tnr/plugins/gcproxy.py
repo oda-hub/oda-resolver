@@ -17,7 +17,7 @@ class GCProxyResolver(Resolver):
 
         if r.status_code != 200:
             return dict(
-                        success=True,
+                        success=False,
                         content=r.content,
                     )
 
