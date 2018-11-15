@@ -31,7 +31,7 @@ class ResolverToPlugins(Resolver):
             module_resolvers=dict()
             for name, cls in plugin.__dict__.items():
                 if inspect.isclass(cls) and issubclass(cls,Resolver) and cls != Resolver:
-                    module_resolvers[plugin_name+"."+name]=cls
+                    module_resolvers[plugin_name.replace("tnr.plugins.","")+"."+name]=cls
 
             print("discovered resolver in module: "+", ".join(module_resolvers))
             self.resolvers.update(module_resolvers)

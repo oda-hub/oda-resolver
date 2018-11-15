@@ -1,2 +1,5 @@
-flask
+Pyro4
+peewee
 requests
+flask
+astropy
