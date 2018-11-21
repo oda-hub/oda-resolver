@@ -4,6 +4,8 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
+plugin_disabled = True
+
 class GCProxyResolver(Resolver):
 
     @property
@@ -15,7 +17,7 @@ class GCProxyResolver(Resolver):
                             auth=HTTPBasicAuth("integral", self.secret),
                         )
 
-        if r.status_code != 200:
+        if r.status_code != 200 or plugin_disabled:
             return dict(
                         success=False,
                         content=r.content,
