@@ -13,11 +13,17 @@ class GCProxyResolver(Resolver):
         return open(os.environ.get("GCPROXY_SECRET_LOCATION","/secret")).read().strip()
 
     def resolve(self,name):
+        if plugin_disabled:
+            return dict(
+                        success=False,
+                        content="plugin disabled",
+                    )
+
         r=requests.get("http://134.158.75.161/cat/grbcatalog/api/v1.1/"+name,
                             auth=HTTPBasicAuth("integral", self.secret),
                         )
 
-        if r.status_code != 200 or plugin_disabled:
+        if r.status_code != 200:
             return dict(
                         success=False,
                         content=r.content,
