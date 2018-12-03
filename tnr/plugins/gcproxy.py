@@ -4,7 +4,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
-plugin_disabled = True
+plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','yes') == 'yes'
 
 class GCProxyResolver(Resolver):
 
