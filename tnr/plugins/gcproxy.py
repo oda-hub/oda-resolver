@@ -35,7 +35,7 @@ class GCProxyResolver(Resolver):
                         [('success',True)]+
                         [('raw',d)]+
                         d['events'][0].items()+
-                        [('mjd',d['events'][0]['ijd']+51544.0)],
+                        [('mjd',d['events'][0]['ijd']+51544.0)]+
                         [('duration',d['duration'])]
                     )
         except Exception as e:
