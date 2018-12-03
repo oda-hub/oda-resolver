@@ -4,7 +4,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
-plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','yes') == 'yes'
+plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'yes'
 
 class GCProxyResolver(Resolver):
 
@@ -34,8 +34,8 @@ class GCProxyResolver(Resolver):
             return dict(
                         [('success',True)]+
                         [('raw',d)]+
-                        d['events'][0].items()+
-                        [('mjd',d['events'][0]['ijd']+51544.0)]+
+                        [('events',d['events'])]+
+                        [('mjd',d['ijd']+51544.0)]+
                         [('duration',d['duration'])]
                     )
         except Exception as e:

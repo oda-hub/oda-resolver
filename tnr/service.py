@@ -41,12 +41,14 @@ def timespan_byname(name):
         utc=data.get('polargrbs.PolarResolver').get('utc')
         mjd=data.get('polargrbs.PolarResolver').get('mjd')
         duration=data.get('polargrbs.PolarResolver').get('duration')
+        print("managed to polar",utc,mjd,duration)
     else:
         utc=data.get('gcproxy.GCProxyResolver').get('utc',None)
         mjd=data.get('gcproxy.GCProxyResolver').get('mjd',None)
         duration=data.get('gcproxy.GCProxyResolver').get('duration',None)
+        print("resorted to gc",utc,mjd,duration)
 
-    if utc is None or mjd is None or duration is None:
+    if mjd is None or duration is None:
         return jsonify(
                     success=False,
                     comment='all resolvers failed',
