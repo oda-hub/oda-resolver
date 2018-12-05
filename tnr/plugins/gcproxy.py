@@ -31,6 +31,11 @@ class GCProxyResolver(Resolver):
 
         try:
             d=r.json()
+            if str(d['ijd']) == "nan":
+                return dict(
+                        success=False,
+                        raw_response=r.content,
+                    )
             return dict(
                         [('success',True)]+
                         [('raw',d)]+
