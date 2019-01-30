@@ -6,10 +6,27 @@ def create_app():
 app = create_app()
 
 
+
+import json
 import requests
 from astropy.time import Time
+import numpy as np
 
 from tnr.resolvers import RootResolver
+
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+
+        try:
+            return json.JSONEncoder.default(self, obj)
+        except:
+            print("problem serilizing",obj)
+            raise
+
+app.json_encoder = NumpyEncoder
 
 @app.route('/')
 def root():
