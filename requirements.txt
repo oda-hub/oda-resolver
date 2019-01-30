@@ -3,3 +3,5 @@ peewee
 requests
 flask
 astropy
+astroquery
+pandas

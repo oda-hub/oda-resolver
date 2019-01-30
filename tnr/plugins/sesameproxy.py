@@ -1,16 +1,14 @@
 from tnr.resolvers import Resolver
 
 import os
-import requests
-from requests.auth import HTTPBasicAuth
 
-plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'yes'
+from astroquery.simbad import Simbad
+import astropy.units as u
+from astropy.coordinates import SkyCoord
 
-class GCProxyResolver(Resolver):
+plugin_disabled = os.environ.get('TNR_PLUGIN_SESAMEPROXY_ENABLED','no') == 'yes'
 
-    @property
-    def secret(self):
-        return open(os.environ.get("GCPROXY_SECRET_LOCATION","/secret")).read().strip()
+class SesameProxyResolver(Resolver):
 
     def resolve(self,name):
         if plugin_disabled:
@@ -19,35 +17,40 @@ class GCProxyResolver(Resolver):
                         content="plugin disabled",
                     )
 
-        r=requests.get("http://134.158.75.161/cat/grbcatalog/api/v1.1/"+name,
-                            auth=HTTPBasicAuth("integral", self.secret),
-                        )
-
-        if r.status_code != 200:
+        try:
+            result_table = Simbad.query_object(name)
+        except Exception as e:
             return dict(
                         success=False,
-                        content=r.content,
+                        content="exception accessing Simbad: "+repr(e),
                     )
+
+        result_table = Simbad.query_object("Crab")
+
+        if len(result_table) == 0 :
+            return dict(
+                        success=False,
+                        content="simbad found no sources",
+                    )
+        
+        if len(result_table) > 1: 
+            return dict(
+                        success=False,
+                        content="simbad found multiple (%i) sources"%len(result_table),
+                    )
+
+        source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
 
         try:
-            d=r.json()
-            if str(d['ijd']) == "nan":
-                return dict(
-                        success=False,
-                        raw_response=r.content,
-                    )
             return dict(
                         [('success',True)]+
-                        [('raw',d)]+
-                        [('events',d['events'])]+
-                        [('mjd',d['ijd']+51544.0)]+
-                        [('duration',d['duration'])]
+                        [('ra_deg',source_coord.ra.deg)]+
+                        [('dec_deg',source_coord.dec.deg)]
                     )
         except Exception as e:
             return dict(
                     success=False,
                     exception=repr(e),
-                    raw_response=r.content,
                 )
     
 
