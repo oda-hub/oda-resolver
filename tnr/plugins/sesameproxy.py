@@ -27,7 +27,7 @@ class SesameProxyResolver(Resolver):
 
         result_table = Simbad.query_object(name)
 
-        if len(result_table) == 0 :
+        if result_table is None or len(result_table) == 0 :
             return dict(
                         success=False,
                         content="simbad found no sources",
