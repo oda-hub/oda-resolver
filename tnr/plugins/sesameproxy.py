@@ -25,7 +25,7 @@ class SesameProxyResolver(Resolver):
                         content="exception accessing Simbad: "+repr(e),
                     )
 
-        result_table = Simbad.query_object("Crab")
+        result_table = Simbad.query_object(name)
 
         if len(result_table) == 0 :
             return dict(
@@ -39,13 +39,20 @@ class SesameProxyResolver(Resolver):
                         content="simbad found multiple (%i) sources"%len(result_table),
                     )
 
-        source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
+        try:
+            source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
+        except ValueError:
+            return dict(
+                        success=False,
+                        content="simbad found but no coordinates "+repr(result_table),
+                    )
 
         try:
             return dict(
                         [('success',True)]+
                         [('ra_deg',source_coord.ra.deg)]+
-                        [('dec_deg',source_coord.dec.deg)]
+                        [('dec_deg',source_coord.dec.deg)]+
+                        [('origin',result_table['COO_BIBCODE'][0].decode('utf-8'))]
                     )
         except Exception as e:
             return dict(
