@@ -40,6 +40,19 @@ def test_known_timespan(client):
 
     assert r.json['success'] == True
 
+def test_known_timespan_coord(client):
+
+    r=client.get(url_for('timespan_byname',name='GRB120711A'))
+
+    assert r.status_code == 200
+    print(r.json)
+
+    assert r.json['success'] == True
+
+    assert r.json['have_coordinates'] == True
+    assert 'ra' in r.json
+    assert 'dec' in r.json
+
 def test_unknown_timespan(client):
 
     r=client.get(url_for('timespan_byname',name='GRB170114X'))
@@ -58,4 +71,4 @@ def test_sesame(client):
     assert r.status_code == 200
     print(r.json)
 
-    assert r.json['success'] == True
+    assert r.json['sesameproxy.SesameProxyResolver']['success'] == True

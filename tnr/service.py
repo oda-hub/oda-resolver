@@ -65,6 +65,18 @@ def timespan_byname(name):
         duration=data.get('gcproxy.GCProxyResolver').get('duration',None)
         print("resorted to gc",utc,mjd,duration)
 
+    ra=None
+    dec=None
+    have_coordinates=False
+    for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
+        resolver_data = data.get(resolver_name)
+        if 'ra_deg' in resolver_data and 'dec_deg' in resolver_data:
+            ra = resolver_data['ra_deg']
+            dec = resolver_data['dec_deg']
+            have_coordinates = True
+            break
+        
+
     if mjd is None or duration is None:
         return jsonify(
                     success=False,
@@ -88,6 +100,9 @@ def timespan_byname(name):
                     mjd=mjd,
                     duration=duration,
                     view=viewing_range,
+                    ra=ra,
+                    dec=dec,
+                    have_coordinates=have_coordinates,
                 ))
 
 

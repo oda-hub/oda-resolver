@@ -50,8 +50,8 @@ class SesameProxyResolver(Resolver):
         try:
             return dict(
                         [('success',True)]+
-                        [('ra_deg',source_coord.ra.deg)]+
-                        [('dec_deg',source_coord.dec.deg)]+
+                        [('ra_deg',source_coord.ra.deg[0])]+
+                        [('dec_deg',source_coord.dec.deg[0])]+
                         [('origin',result_table['COO_BIBCODE'][0].decode('utf-8'))]
                     )
         except Exception as e:
