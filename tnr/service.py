@@ -38,7 +38,7 @@ def resolve(name):
 
     return jsonify(root_resolver.resolve(name))
 
-@app.route('/api/v1.0/timespan/byname/<string:name>')
+@app.route('/api/v1.1/byname/<string:name>')
 def timespan_byname(name):
     root_resolver=RootResolver()
 
