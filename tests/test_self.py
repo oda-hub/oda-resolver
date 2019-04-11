@@ -33,7 +33,7 @@ def test_known(client):
 
 def test_known_timespan(client):
 
-    r=client.get(url_for('timespan_byname',name='GRB170114B'))
+    r=client.get(url_for('timespan_byname_v11',name='GRB170114B'))
 
     assert r.status_code == 200
     print(r.json)
@@ -42,7 +42,7 @@ def test_known_timespan(client):
 
 def test_known_timespan_coord(client):
 
-    r=client.get(url_for('timespan_byname',name='GRB120711A'))
+    r=client.get(url_for('timespan_byname_v11',name='GRB120711A'))
 
     assert r.status_code == 200
     print(r.json)
@@ -55,7 +55,7 @@ def test_known_timespan_coord(client):
 
 def test_unknown_timespan(client):
 
-    r=client.get(url_for('timespan_byname',name='GRB170114X'))
+    r=client.get(url_for('timespan_byname_v11',name='GRB170114X'))
 
     assert r.status_code == 200
     print(r.json)
