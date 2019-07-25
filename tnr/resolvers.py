@@ -8,6 +8,9 @@ class Resolver:
     def resolve(self,name):
         pass
 
+    def bytime(self,t0,span_s):
+        pass
+
 
 def iter_namespace(ns_pkg):
     return pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + ".")
@@ -39,6 +42,12 @@ class ResolverToPlugins(Resolver):
     def resolve(self,name):
         return {
             plugin_name: plugin().resolve(name)
+            for plugin_name, plugin in self.resolvers.items()
+        }
+
+    def bytime(self,t0,span_s):
+        return {
+            plugin_name: plugin().bytime(t0,span_s)
             for plugin_name, plugin in self.resolvers.items()
         }
             

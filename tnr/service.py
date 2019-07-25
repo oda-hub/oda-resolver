@@ -33,6 +33,21 @@ app.json_encoder = NumpyEncoder
 def root():
     return jsonify(service='Transient Name Resolver',version=os.environ.get('CONTAINER_VERSION','unknown'))
 
+@app.route('/api/v1.0/bytime/<string:t0>/<string:span>')
+def bytime(t0, span):
+
+    try:
+        span = float(span)
+    except Exception as e:
+        return jsonify(dict(
+                    success=False,
+                    comment="problem interpretting time span: "+repr(e),
+                ))
+    
+    root_resolver=RootResolver()
+
+    return jsonify(root_resolver.bytime(t0, span))
+
 @app.route('/api/v1.0/byname/<string:name>')
 def resolve(name):
     root_resolver=RootResolver()
