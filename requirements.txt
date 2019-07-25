@@ -5,3 +5,5 @@ flask
 astropy
 astroquery
 pandas
+lxml
+beautifulsoup4
