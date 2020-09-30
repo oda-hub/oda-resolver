@@ -4,7 +4,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
-plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'yes'
+plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'no'
 
 class GCProxyResolver(Resolver):
 
@@ -19,14 +19,14 @@ class GCProxyResolver(Resolver):
                         content="plugin disabled",
                     )
 
-        r=requests.get("http://134.158.75.161/cat/grbcatalog/api/v1.1/"+name,
+        r=requests.get("http://lal.odahub.io/cat/grbcatalog/api/v1.1/"+name,
                             auth=HTTPBasicAuth("integral", self.secret),
                         )
 
         if r.status_code != 200:
             return dict(
                         success=False,
-                        content=str(r.content),
+                        content=str(r.text),
                     )
 
         try:
@@ -34,7 +34,7 @@ class GCProxyResolver(Resolver):
             if str(d['ijd']) == "nan":
                 return dict(
                         success=False,
-                        raw_response=r.content,
+                        raw_response=r.text,
                     )
             return dict(
                         [('success',True)]+
@@ -47,7 +47,7 @@ class GCProxyResolver(Resolver):
             return dict(
                     success=False,
                     exception=repr(e),
-                    raw_response=r.content,
+                    raw_response=r.text,
                 )
     
 
