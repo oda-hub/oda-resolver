@@ -54,7 +54,7 @@ class GCNGRBResolver(Resolver):
     def d(self):
         return cache
 
-    def resolve(self,name):
+    def resolve(self,name):        
         return dict(
                 success=False,
                 exception="name %s unknown"%name,
@@ -82,6 +82,9 @@ class GCNGRBResolver(Resolver):
     
 
     def bytime(self,t0,span_s):
+        return []
+        #disabled!
+
         self.load()
 
         t0_mjd = Time(t0).mjd

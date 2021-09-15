@@ -29,7 +29,7 @@ test:
 	pylint -E  *.py
 	echo secret > secret
 	GCPROXY_SECRET_LOCATION=./secret \
-	POLAR_GRB_DATA_CSV=$PWD/data/polar/polar_gwgrb.csv \
+	POLAR_GRB_DATA_CSV=$(PWD)/data/polar/polar_gwgrb.csv \
 		python -m pytest  -sv
 
 .FORCE:
