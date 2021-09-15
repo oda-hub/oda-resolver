@@ -40,10 +40,12 @@ class ResolverToPlugins(Resolver):
             self.resolvers.update(module_resolvers)
 
     def resolve(self,name):
-        return {
+        r = {
             plugin_name: plugin().resolve(name)
             for plugin_name, plugin in self.resolvers.items()
         }
+        print("results:", r)
+        return r
 
     def bytime(self,t0,span_s):
         return {

@@ -52,7 +52,8 @@ def bytime(t0, span):
 def resolve(name):
     root_resolver=RootResolver()
 
-    return jsonify(root_resolver.resolve(name))
+    return root_resolver.resolve(name)
+
 
 @app.route('/api/v1.1/byname/<string:name>')
 def timespan_byname_v11(name):

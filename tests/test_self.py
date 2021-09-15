@@ -9,7 +9,7 @@ def test_unknown(client):
     print(r.json)
 
     assert r.json['polargrbs.PolarResolver']['success'] == False
-    assert r.json['gcproxy.GCProxyResolver']['success'] == False
+    #assert r.json['gcproxy.GCProxyResolver']['success'] == False
 
 def test_known(client):
 
@@ -19,7 +19,7 @@ def test_known(client):
     print(r.json)
 
     assert r.json['polargrbs.PolarResolver']['success'] == True
-    assert r.json['gcproxy.GCProxyResolver']['success'] == True
+    #assert r.json['gcproxy.GCProxyResolver']['success'] == True
 
 def test_known(client):
 
@@ -29,7 +29,7 @@ def test_known(client):
     print(r.json)
 
     assert r.json['polargrbs.PolarResolver']['success'] == True
-    assert r.json['gcproxy.GCProxyResolver']['success'] == True
+    #assert r.json['gcproxy.GCProxyResolver']['success'] == True
 
 def test_known_timespan(client):
 
