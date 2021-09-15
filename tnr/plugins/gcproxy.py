@@ -4,7 +4,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 
-plugin_disabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'yes'
+plugin_enabled = os.environ.get('TNR_PLUGIN_GCPROXY_ENABLED','no') == 'yes'
 
 class GCProxyResolver(Resolver):
 
@@ -13,7 +13,7 @@ class GCProxyResolver(Resolver):
         return open(os.environ.get("GCPROXY_SECRET_LOCATION","/secret")).read().strip()
 
     def resolve(self,name):
-        if plugin_disabled:
+        if not plugin_enabled:
             return dict(
                         success=False,
                         content="plugin disabled",
