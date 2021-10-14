@@ -35,6 +35,7 @@ class GWProxyResolver(Resolver):
                 'raw': d,
                 'events': d['events'],
                 'mjd': Time(event['GPS'], format='gps').mjd,
+                'utc': Time(event['GPS'], format='gps').isot,
                 'duration': 5 # NOTE hardcoded default duration
             }
         except Exception as e:
