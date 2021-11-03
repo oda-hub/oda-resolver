@@ -5,6 +5,7 @@ from astropy.time import Time
 
 plugin_enabled = os.environ.get('TNR_PLUGIN_GWPROXY_ENABLED','no') == 'yes'
 resolveurl = "https://www.gw-openscience.org/eventapi/json/query/show?name-contains={name}"
+used_catalogs = ['GWTC-1-confident', 'GWTC-2', 'O3_Discovery_Papers']
 
 class GWProxyResolver(Resolver):
         
@@ -27,7 +28,7 @@ class GWProxyResolver(Resolver):
                 return {'success': False}
             
             for ev in d['events']:
-                if d['events'][ev]['catalog.shortName'] in ['GWTC-1-confident', 'GWTC-2']:
+                if d['events'][ev]['catalog.shortName'] in used_catalogs:
                     event = d['events'][ev]
             
             return {
