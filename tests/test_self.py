@@ -95,3 +95,12 @@ def test_bytime(client):
 
     assert (time.time() - t0)<1
     
+def test_gw(client):
+    r=client.get(url_for('timespan_byname_v11',name='GW190412'))
+
+    assert r.status_code == 200
+    print(r.json)
+
+    assert r.json['mjds']['gwproxy.GWProxyResolver'] is not None
+    assert r.json['success'] == True
+    assert r.json['success_time'] == True
