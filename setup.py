@@ -36,11 +36,9 @@ setup(
 
     packages=find_packages(exclude=['contrib', 'docs', 'tests']), 
 
-    install_requires=['peppercorn'],  # Optional
-
     extras_require={  # Optional
         'dev': ['check-manifest'],
-        'test': ['coverage'],
+        'test': ['coverage', 'pytest-flask'],
     },
 
 )
