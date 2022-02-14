@@ -25,8 +25,6 @@ class SesameProxyResolver(Resolver):
                         content="exception accessing Simbad: "+repr(e),
                     )
 
-        result_table = Simbad.query_object(name)
-
         if result_table is None or len(result_table) == 0 :
             return dict(
                         success=False,

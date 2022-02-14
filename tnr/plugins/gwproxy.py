@@ -14,15 +14,15 @@ class GWProxyResolver(Resolver):
             return {'success': False,
                     'content': "plugin disabled",
                     }
-            
-        r=requests.get(resolveurl.format(name=name))
-
-        if r.status_code != 200:
-            return {'success': False,
-                    'content': str(r.text),
-                    }
-
         try:
+            
+            r=requests.get(resolveurl.format(name=name))
+
+            if r.status_code != 200:
+                return {'success': False,
+                        'content': str(r.text),
+                        }
+
             d=r.json()
             if d['events'] == {}:
                 return {'success': False}
