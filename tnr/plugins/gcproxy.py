@@ -18,18 +18,17 @@ class GCProxyResolver(Resolver):
                         success=False,
                         content="plugin disabled",
                     )
-
-        r=requests.get("http://lal.odahub.io/cat/grbcatalog/api/v1.1/"+name,
+        try:
+            r=requests.get("http://lal.odahub.io/cat/grbcatalog/api/v1.1/"+name,
                             auth=HTTPBasicAuth("integral", self.secret),
                         )
 
-        if r.status_code != 200:
-            return dict(
-                        success=False,
-                        content=str(r.text),
-                    )
+            if r.status_code != 200:
+                return dict(
+                            success=False,
+                            content=str(r.text),
+                        )
 
-        try:
             d=r.json()
             if str(d['ijd']) == "nan":
                 return dict(

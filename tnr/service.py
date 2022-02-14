@@ -71,12 +71,12 @@ def timespan_byname_v11(name):
         durations[resolver]=event.get('duration','100')
 
     
-    if data.get('polargrbs.PolarResolver').get('exception',None) is None:
+    if data.get('polargrbs.PolarResolver').get('success', False) is True:
         utc=data.get('polargrbs.PolarResolver').get('utc')
         mjd=data.get('polargrbs.PolarResolver').get('mjd')
         duration=data.get('polargrbs.PolarResolver').get('duration')
         print("managed to polar",utc,mjd,duration)
-    elif data.get('gwproxy.GWProxyResolver').get('exception',None) is None:
+    elif data.get('gwproxy.GWProxyResolver').get('success', False) is True:
         utc=data.get('gwproxy.GWProxyResolver').get('utc')
         mjd=data.get('gwproxy.GWProxyResolver').get('mjd')
         duration=data.get('gwproxy.GWProxyResolver').get('duration')
