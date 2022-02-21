@@ -16,7 +16,7 @@ class GWProxyResolver(Resolver):
                     }
         try:
             
-            r=requests.get(resolveurl.format(name=name))
+            r=requests.get(resolveurl.format(name=str(name).replace(' ', '')))
 
             if r.status_code != 200:
                 return {'success': False,
