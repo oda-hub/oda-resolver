@@ -7,6 +7,7 @@ import astropy.units as u
 from astropy.coordinates import SkyCoord
 
 plugin_disabled = os.environ.get('TNR_PLUGIN_SESAMEPROXY_ENABLED','no') == 'yes'
+ivoa_vocabulary_url = "http://www.ivoa.net/rdf/object-type#{term}"
 
 class SesameProxyResolver(Resolver):
 
@@ -18,6 +19,7 @@ class SesameProxyResolver(Resolver):
                     )
 
         try:
+            Simbad.add_votable_fields("otype")
             result_table = Simbad.query_object(name)
         except Exception as e:
             return dict(
@@ -39,6 +41,8 @@ class SesameProxyResolver(Resolver):
 
         try:
             source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
+            object_type = str(result_table[0]['OTYPE']).strip()
+            object_type_link = ivoa_vocabulary_url.format(name=object_type)
         except ValueError:
             return dict(
                         success=False,
@@ -50,7 +54,8 @@ class SesameProxyResolver(Resolver):
                         [('success',True)]+
                         [('ra_deg',source_coord.ra.deg[0])]+
                         [('dec_deg',source_coord.dec.deg[0])]+
-                        [('origin',result_table['COO_BIBCODE'][0])]
+                        [('origin',result_table['COO_BIBCODE'][0])]+
+                        [('otype', object_type)]
                     )
         except Exception as e:
             return dict(

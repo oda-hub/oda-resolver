@@ -97,7 +97,13 @@ def timespan_byname_v11(name):
             dec = resolver_data['dec_deg']
             have_coordinates = True
             break
-        
+
+    object_type=None
+    for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
+        resolver_data = data.get(resolver_name)
+        if 'otype' in resolver_data:
+            object_type = resolver_data['otype']
+            break
 
     have_time = False
     if mjd is not None and duration is not None:
@@ -126,6 +132,7 @@ def timespan_byname_v11(name):
                 view=viewing_range,
                 ra=ra,
                 dec=dec,
+                object_type=object_type,
                 have_coordinates=have_coordinates,
             ))
 
