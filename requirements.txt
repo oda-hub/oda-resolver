@@ -7,3 +7,4 @@ astroquery
 pandas
 lxml
 beautifulsoup4
+rdflib

@@ -99,10 +99,13 @@ def timespan_byname_v11(name):
             break
 
     object_type=None
+    object_links=None
     for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
         resolver_data = data.get(resolver_name)
         if 'otype' in resolver_data:
             object_type = resolver_data['otype']
+            if 'object_links' in resolver_data:
+                object_links = resolver_data['object_links']
             break
 
     have_time = False
@@ -133,6 +136,7 @@ def timespan_byname_v11(name):
                 ra=ra,
                 dec=dec,
                 object_type=object_type,
+                object_links=object_links,
                 have_coordinates=have_coordinates,
             ))
 
