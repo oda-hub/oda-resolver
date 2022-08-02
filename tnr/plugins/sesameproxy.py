@@ -61,7 +61,6 @@ class SesameProxyResolver(Resolver):
                 if links is not None:
                     object_links = ",".join(links)
 
-
         except ValueError:
             return dict(
                         success=False,
