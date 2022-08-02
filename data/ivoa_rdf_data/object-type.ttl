@@ -1,0 +1,1175 @@
+@base <http://www.ivoa.net/rdf/object-type>.
+@prefix : <#>.
+
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix ivoasem: <http://www.ivoa.net/rdf/ivoasem#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+<> a owl:Ontology;
+    dc:created "2020-10-06";
+    dc:creator [ foaf:name "Simbad" ];
+    dc:license <http://creativecommons.org/publicdomain/zero/1.0/>;
+    rdfs:label "Object Types"@en;
+    dc:title "Object Types"@en;
+    dc:description """A vocabulary of types of astronomical objects, ranging from
+stars to galaxies.  This vocabulary is in use at Simbad, but it is also
+intended for use in Obscore's target_class and similar fields.""";
+    ivoasem:vocflavour "RDF Class".
+
+dc:created a owl:AnnotationProperty.
+dc:creator a owl:AnnotationProperty.
+dc:title a owl:AnnotationProperty.
+dc:description a owl:AnnotationProperty.
+<#ae-star> a rdfs:Class;
+  rdfs:label "Ae*";
+  rdfs:comment "Herbig Ae/Be Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/723>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ae%2A>;
+  rdfs:subClassOf <#yso>.
+
+<#agb-star> a rdfs:Class;
+  rdfs:label "AGB*";
+  rdfs:comment "Asymptotic Giant Branch Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#AB%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/2100>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>.
+
+<#agn> a rdfs:Class;
+  rdfs:label "AGN";
+  rdfs:comment "Active Galaxy Nucleus";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#AGN>;
+  skos:exactMatch <http://astrothesaurus.org/uat/16>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>.
+
+<#assoc-star> a rdfs:Class;
+  rdfs:label "Assoc*";
+  rdfs:comment "Association of Stars";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#As%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1582>.
+
+<#bcl-g> a rdfs:Class;
+  rdfs:label "BClG";
+  rdfs:comment "Brightest Galaxy in a Cluster (BCG)";
+  rdfs:subClassOf <#gin-cl>;
+  skos:exactMatch <http://astrothesaurus.org/uat/181>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BiC>;
+  ivoasem:preliminary ":__".
+
+<#be-star> a rdfs:Class;
+  rdfs:label "Be*";
+  rdfs:comment "Be Star";
+  rdfs:subClassOf <#ms-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/142>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Be%2A>.
+
+<#bh> a rdfs:Class;
+  rdfs:label "BH";
+  rdfs:comment "Black Hole";
+  skos:exactMatch <http://astrothesaurus.org/uat/162>;
+  rdfs:subClassOf <#gravitation>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BH>.
+
+<#bl-lac> a rdfs:Class;
+  rdfs:label "BLLac";
+  rdfs:comment "BL Lac";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BLL>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#blazar>;
+  skos:exactMatch <http://astrothesaurus.org/uat/158>.
+
+<#blazar> a rdfs:Class;
+  rdfs:label "Blazar";
+  rdfs:comment "Blazar";
+  rdfs:subClassOf <#qso>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Bla>;
+  skos:exactMatch <http://astrothesaurus.org/uat/164>.
+
+<#blue> a rdfs:Class;
+  rdfs:label "Blue";
+  rdfs:comment "Blue Object";
+  rdfs:subClassOf <#opt>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#blu>.
+
+<#blue-comp-g> a rdfs:Class;
+  rdfs:label "BlueCompG";
+  rdfs:comment "Blue Compact Galaxy";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#bCG>;
+  skos:exactMatch <http://astrothesaurus.org/uat/165>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>.
+
+<#blue-sg-star> a rdfs:Class;
+  rdfs:label "BlueSG*";
+  rdfs:comment "Blue Supergiant";
+  skos:exactMatch <http://astrothesaurus.org/uat/431>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#s%2Ab>;
+  rdfs:subClassOf <#sg-star>.
+
+<#blue-straggler> a rdfs:Class;
+  rdfs:label "BlueStraggler";
+  rdfs:comment "Blue Straggler";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BS%2A>;
+  rdfs:subClassOf <#ms-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/168>.
+
+<#brown-d-star> a rdfs:Class;
+  rdfs:label "brownD*";
+  rdfs:comment "Brown Dwarf";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BD%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/185>;
+  rdfs:subClassOf <#low-mass-star>.
+
+<#bubble> a rdfs:Class;
+  rdfs:label "Bubble";
+  rdfs:comment "Bubble";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#bub>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1635>.
+
+<#by-dra> a rdfs:Class;
+  rdfs:label "BYDra";
+  rdfs:comment "BY Dra Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/190>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#BY%2A>.
+
+<#c-star> a rdfs:Class;
+  rdfs:label "C*";
+  rdfs:comment "Carbon Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/199>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#C%2A>;
+  rdfs:subClassOf <#ev-star>.
+
+<#catacly-v-star> a rdfs:Class;
+  rdfs:label "CataclyV*";
+  rdfs:comment "Cataclysmic Binary";
+  skos:exactMatch <http://astrothesaurus.org/uat/203>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#CV%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>.
+
+<#cepheid> a rdfs:Class;
+  rdfs:label "Cepheid";
+  rdfs:comment "Cepheid Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ce%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/218>.
+
+<#cl-g> a rdfs:Class;
+  rdfs:label "ClG";
+  rdfs:comment "Cluster of Galaxies";
+  skos:exactMatch <http://astrothesaurus.org/uat/584>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#ClG>;
+  ivoasem:preliminary ":__".
+
+<#cl-star> a rdfs:Class;
+  rdfs:label "Cl*";
+  rdfs:comment "Cluster of Stars";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Cl%2A>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1567>.
+
+<#cloud> a rdfs:Class;
+  rdfs:label "Cloud";
+  rdfs:comment "Cloud";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Cld>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://astrothesaurus.org/uat/834>.
+
+<#com-glob> a rdfs:Class;
+  rdfs:label "ComGlob";
+  rdfs:comment "Cometary Globule / Pillar";
+  rdfs:subClassOf <#cloud>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#CGb>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/276>.
+
+<#compact-gr-g> a rdfs:Class;
+  rdfs:label "Compact_Gr_G";
+  rdfs:comment "Compact Group of Galaxies";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#CGG>;
+  rdfs:subClassOf <#group-g>.
+
+<#delta-cep> a rdfs:Class;
+  rdfs:label "deltaCep";
+  rdfs:comment "Classical Cepheid Variable";
+  rdfs:subClassOf <#cepheid>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#cC%2A>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/368>.
+
+<#dense-core> a rdfs:Class;
+  rdfs:label "denseCore";
+  rdfs:comment "Dense Core";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#cor>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/371>;
+  rdfs:subClassOf <#ism>.
+
+<#dk-neb> a rdfs:Class;
+  rdfs:label "DkNeb";
+  rdfs:comment "Dark Cloud (nebula)";
+  rdfs:subClassOf <#cloud>;
+  skos:exactMatch <http://astrothesaurus.org/uat/352>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#DNe>.
+
+<#eb-star> a rdfs:Class;
+  rdfs:label "EB*";
+  rdfs:comment "Eclipsing Binary";
+  skos:exactMatch <http://astrothesaurus.org/uat/444>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#EB%2A>.
+
+<#ellip-var> a rdfs:Class;
+  rdfs:label "EllipVar";
+  rdfs:comment "Ellipsoidal Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#El%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/455>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>.
+
+<#em-g> a rdfs:Class;
+  rdfs:label "EmG";
+  rdfs:comment "Emission-line galaxy";
+  skos:exactMatch <http://astrothesaurus.org/uat/459>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#EmG>.
+
+<#em-obj> a rdfs:Class;
+  rdfs:label "EmObj";
+  rdfs:comment "Emission Object";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#EmO>;
+  rdfs:subClassOf <#opt>;
+  ivoasem:preliminary ":__".
+
+<#em-star> a rdfs:Class;
+  rdfs:label "Em*";
+  rdfs:comment "Emission-line Star";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Em%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/460>.
+
+<#erupt-star-rcr-b> a rdfs:Class;
+  rdfs:label "Erupt*RCrB";
+  rdfs:comment "R CrB Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RC%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1327>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#pec-star>.
+
+<#eruptive-star> a rdfs:Class;
+  rdfs:label "Eruptive*";
+  rdfs:comment "Eruptive Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/476>;
+  rdfs:subClassOf <#v-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Er%2A>.
+
+<#ev-star> a rdfs:Class;
+  rdfs:label "Ev*";
+  rdfs:comment "Evolved Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ev%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/481>.
+
+<#fi-r> a rdfs:Class;
+  rdfs:label "FIR";
+  rdfs:comment "Far-IR source (λ >= 30 µm)";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#FIR>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ir>.
+
+<#flt> a rdfs:Class;
+  rdfs:label "flt";
+  rdfs:comment "Interstellar Filament";
+  skos:exactMatch <http://astrothesaurus.org/uat/842>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#flt>;
+  rdfs:subClassOf <#ism>.
+
+<#gal-neb> a rdfs:Class;
+  rdfs:label "GalNeb";
+  rdfs:comment "Nebula";
+  rdfs:subClassOf <#cloud>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1095>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GNe>.
+
+<#galaxy> a rdfs:Class;
+  rdfs:label "Galaxy";
+  rdfs:comment "Galaxy";
+  skos:exactMatch <http://astrothesaurus.org/uat/573>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#G>.
+
+<#gamma> a rdfs:Class;
+  rdfs:label "gamma";
+  rdfs:comment "Gamma-ray Source";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#gam>;
+  skos:exactMatch <http://astrothesaurus.org/uat/633>;
+  ivoasem:preliminary ":__".
+
+<#gamma-burst> a rdfs:Class;
+  rdfs:label "gammaBurst";
+  rdfs:comment "Gamma-ray Burst";
+  skos:exactMatch <http://astrothesaurus.org/uat/629>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#gB>;
+  rdfs:subClassOf <#gamma>.
+
+<#gamma-dor> a rdfs:Class;
+  rdfs:label "gammaDor";
+  rdfs:comment "gamma Dor Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#gD%2A>;
+  rdfs:subClassOf <#ms-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/2101>.
+
+<#gin-cl> a rdfs:Class;
+  rdfs:label "GinCl";
+  rdfs:comment "Galaxy towards a Cluster of Galaxies";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GiC>;
+  rdfs:subClassOf <#galaxy>.
+
+<#gin-group> a rdfs:Class;
+  rdfs:label "GinGroup";
+  rdfs:comment "Galaxy towards a Group of Galaxies";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GiG>.
+
+<#gin-pair> a rdfs:Class;
+  rdfs:label "GinPair";
+  rdfs:comment "Galaxy in Pair of Galaxies";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GiP>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>.
+
+<#gl-cl> a rdfs:Class;
+  rdfs:label "GlCl";
+  rdfs:comment "Globular Cluster";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GlC>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#cl-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/656>.
+
+<#globule> a rdfs:Class;
+  rdfs:label "Globule";
+  rdfs:comment "Globule (low-mass dark cloud)";
+  rdfs:subClassOf <#cloud>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#glb>.
+
+<#grav-lens> a rdfs:Class;
+  rdfs:label "GravLens";
+  rdfs:comment "Gravitational Lens";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#gLe>;
+  rdfs:subClassOf <#grav-lens-system>.
+
+<#grav-lens-system> a rdfs:Class;
+  rdfs:label "GravLensSystem";
+  rdfs:comment "Gravitational Lens System (lens+images)";
+  rdfs:subClassOf <#gravitation>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#gLS>.
+
+<#grav-wave-event> a rdfs:Class;
+  rdfs:label "GravWaveEvent";
+  rdfs:comment "Gravitational Wave Event";
+  skos:exactMatch <http://astrothesaurus.org/uat/677>;
+  rdfs:subClassOf <#gravitation>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GWE>.
+
+<#gravitation> a rdfs:Class;
+  rdfs:label "Gravitation";
+  rdfs:comment "Gravitational Source";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#grv>.
+
+<#group-g> a rdfs:Class;
+  rdfs:label "GroupG";
+  rdfs:comment "Group of Galaxies";
+  skos:exactMatch <http://astrothesaurus.org/uat/597>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#GrG>.
+
+<#h-i> a rdfs:Class;
+  rdfs:label "HI";
+  rdfs:comment "HI (21cm) Source";
+  rdfs:subClassOf <#radio>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HI>.
+
+<#h-ii> a rdfs:Class;
+  rdfs:label "HII";
+  rdfs:comment "HII Region";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/694>;
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HII>.
+
+<#h-ii-g> a rdfs:Class;
+  rdfs:label "HII_G";
+  rdfs:comment "HII Galaxy";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#H2G>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>.
+
+<#hb-star> a rdfs:Class;
+  rdfs:label "HB*";
+  rdfs:comment "Horizontal Branch Star";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HB%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/746>.
+
+<#hh> a rdfs:Class;
+  rdfs:label "HH";
+  rdfs:comment "Herbig-Haro Object";
+  rdfs:subClassOf <#outflow>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HH>;
+  skos:exactMatch <http://astrothesaurus.org/uat/722>.
+
+<#hishell> a rdfs:Class;
+  rdfs:label "HIshell";
+  rdfs:comment "Interstellar Shell";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#sh>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://astrothesaurus.org/uat/242>.
+
+<#hmxb> a rdfs:Class;
+  rdfs:label "HMXB";
+  rdfs:comment "High Mass X-ray Binary";
+  rdfs:subClassOf <#xb>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/733>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HXB>.
+
+<#hot-subdwarf> a rdfs:Class;
+  rdfs:label "HotSubdwarf";
+  rdfs:comment "Hot Subdwarf";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HS%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>.
+
+<#hv-cld> a rdfs:Class;
+  rdfs:label "HVCld";
+  rdfs:comment "High-velocity Cloud";
+  rdfs:subClassOf <#cloud>;
+  skos:exactMatch <http://astrothesaurus.org/uat/735>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HVC>;
+  ivoasem:preliminary ":__".
+
+<#hv-star> a rdfs:Class;
+  rdfs:label "HV*";
+  rdfs:comment "High Velocity Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/736>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#HV%2A>.
+
+<#ig> a rdfs:Class;
+  rdfs:label "IG";
+  rdfs:comment "Interacting Galaxies";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#IG>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/802>.
+
+<#inexistent> a rdfs:Class;
+  rdfs:label "Inexistent";
+  rdfs:comment "Not an Object (Error, Artefact, ...)";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#err>;
+  ivoasem:preliminary ":__".
+
+<#ir> a rdfs:Class;
+  rdfs:label "IR";
+  rdfs:comment "Infra-Red Source";
+  skos:exactMatch <http://astrothesaurus.org/uat/793>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#IR>.
+
+<#irregular-v-star> a rdfs:Class;
+  rdfs:label "Irregular_V*";
+  rdfs:comment "Irregular Variable";
+  rdfs:subClassOf <#v-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/865>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ir%2A>.
+
+<#ism> a rdfs:Class;
+  rdfs:label "ISM";
+  rdfs:comment "Interstellar Medium Object";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#ISM>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/847>.
+
+<#lensed-g> a rdfs:Class;
+  rdfs:label "LensedG";
+  rdfs:comment "Gravitationally Lensed Image of a Galaxy";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LeG>;
+  rdfs:subClassOf <#lensed-image>;
+  ivoasem:preliminary ":__".
+
+<#lensed-image> a rdfs:Class;
+  rdfs:label "LensedImage";
+  rdfs:comment "Gravitationally Lensed Image";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LeI>;
+  rdfs:subClassOf <#grav-lens-system>.
+
+<#lensed-q> a rdfs:Class;
+  rdfs:label "LensedQ";
+  rdfs:comment "Gravitationally Lensed Image of a Quasar";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LeQ>;
+  rdfs:subClassOf <#lensed-image>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/671>.
+
+<#lensing-ev> a rdfs:Class;
+  rdfs:label "LensingEv";
+  rdfs:comment "(Micro)Lensing Event";
+  skos:exactMatch <http://astrothesaurus.org/uat/670>;
+  rdfs:subClassOf <#gravitation>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Lev>.
+
+<#liner> a rdfs:Class;
+  rdfs:label "LINER";
+  rdfs:comment "LINER-type Active Galaxy Nucleus";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#agn>;
+  skos:exactMatch <http://astrothesaurus.org/uat/925>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LIN>.
+
+<#lmxb> a rdfs:Class;
+  rdfs:label "LMXB";
+  rdfs:comment "Low Mass X-ray Binary";
+  rdfs:subClassOf <#xb>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/939>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LXB>.
+
+<#low-mass-star> a rdfs:Class;
+  rdfs:label "low-mass*";
+  rdfs:comment "Low-mass Star and substellar objects";
+  skos:exactMatch <http://astrothesaurus.org/uat/2050>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LM%2A>.
+
+<#lpv-star> a rdfs:Class;
+  rdfs:label "LPV*";
+  rdfs:comment "Long-Period Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LP%2A>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/935>;
+  rdfs:subClassOf <#ev-star>.
+
+<#lsb-g> a rdfs:Class;
+  rdfs:label "LSB_G";
+  rdfs:comment "Low Surface Brightness Galaxy";
+  skos:exactMatch <http://astrothesaurus.org/uat/940>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#LSB>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>.
+
+<#m-ir> a rdfs:Class;
+  rdfs:label "MIR";
+  rdfs:comment "Mid-IR Source (3 to 30 µm)";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#MIR>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ir>.
+
+<#ma-star> a rdfs:Class;
+  rdfs:label "Ma*";
+  rdfs:comment "Massive Star or its Remnant";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ma%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/732>.
+
+<#maser> a rdfs:Class;
+  rdfs:label "Maser";
+  rdfs:comment "Maser";
+  skos:exactMatch <http://astrothesaurus.org/uat/103>;
+  rdfs:subClassOf <#radio>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Mas>.
+
+<#mira> a rdfs:Class;
+  rdfs:label "Mira";
+  rdfs:comment "Mira Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/1066>;
+  rdfs:subClassOf <#agb-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Mi%2A>.
+
+<#mol-cld> a rdfs:Class;
+  rdfs:label "MolCld";
+  rdfs:comment "Molecular Cloud";
+  rdfs:subClassOf <#cloud>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1072>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#MoC>.
+
+<#mouv-group> a rdfs:Class;
+  rdfs:label "MouvGroup";
+  rdfs:comment "Moving Group";
+  skos:exactMatch <http://astrothesaurus.org/uat/1076>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#assoc-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#MGr>.
+
+<#ms-star> a rdfs:Class;
+  rdfs:label "MS*";
+  rdfs:comment "Main Sequence Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#MS%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1000>.
+
+<#multiple-object> a rdfs:Class;
+  rdfs:label "multiple_object";
+  rdfs:comment "Composite Object, Blend";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#mul>.
+
+<#multiple-star> a rdfs:Class;
+  rdfs:label "**";
+  rdfs:comment "Double or Multiple Star";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1081>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#%2A%2A>.
+
+<#neutron-star> a rdfs:Class;
+  rdfs:label "Neutron*";
+  rdfs:comment "Neutron Star";
+  rdfs:subClassOf <#ma-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#N%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1108>.
+
+<#ni-r> a rdfs:Class;
+  rdfs:label "NIR";
+  rdfs:comment "Near-IR Source (λ < 3 µm)";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#NIR>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ir>.
+
+<#nova> a rdfs:Class;
+  rdfs:label "Nova";
+  rdfs:comment "Classical Nova";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1127>;
+  rdfs:subClassOf <#catacly-v-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#No%2A>.
+
+<#oh-ir> a rdfs:Class;
+  rdfs:label "OH/IR";
+  rdfs:comment "OH/IR Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#OH%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1156>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>.
+
+<#op-cl> a rdfs:Class;
+  rdfs:label "OpCl";
+  rdfs:comment "Open Cluster";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#OpC>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1160>;
+  rdfs:subClassOf <#cl-star>.
+
+<#opt> a rdfs:Class;
+  rdfs:label "Opt";
+  rdfs:comment "Optical Source";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/2108>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Opt>.
+
+<#orion-v-star> a rdfs:Class;
+  rdfs:label "Orion_V*";
+  rdfs:comment "Orion Variable";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#yso>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Or%2A>.
+
+<#outflow> a rdfs:Class;
+  rdfs:label "Outflow";
+  rdfs:comment "Outflow";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#out>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1636>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#yso>.
+
+<#pair-g> a rdfs:Class;
+  rdfs:label "PairG";
+  rdfs:comment "Pair of Galaxies";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#PaG>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/610>.
+
+<#partof-cloud> a rdfs:Class;
+  rdfs:label "PartofCloud";
+  rdfs:comment "Part of Cloud";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#PoC>;
+  ivoasem:preliminary ":__".
+
+<#partof-g> a rdfs:Class;
+  rdfs:label "PartofG";
+  rdfs:comment "Part of a Galaxy";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#PoG>;
+  ivoasem:preliminary ":__".
+
+<#pec-star> a rdfs:Class;
+  rdfs:label "Pec*";
+  rdfs:comment "Chemically Peculiar Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/226>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Pe%2A>.
+
+<#planet> a rdfs:Class;
+  rdfs:label "Planet";
+  rdfs:comment "Extra-solar Planet";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Pl>;
+  skos:exactMatch <http://astrothesaurus.org/uat/498>.
+
+<#pm-star> a rdfs:Class;
+  rdfs:label "PM*";
+  rdfs:comment "High Proper Motion Star";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#PM%2A>.
+
+<#pn> a rdfs:Class;
+  rdfs:label "PN";
+  rdfs:comment "Planetary Nebula";
+  skos:exactMatch <http://astrothesaurus.org/uat/1249>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#PN>.
+
+<#post-agb-star> a rdfs:Class;
+  rdfs:label "post-AGB*";
+  rdfs:comment "Post-AGB Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/1301>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#pA%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>.
+
+<#puls-v-star> a rdfs:Class;
+  rdfs:label "PulsV*";
+  rdfs:comment "Pulsating Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Pu%2A>;
+  rdfs:subClassOf <#v-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1307>.
+
+<#puls-v-star-b-cep> a rdfs:Class;
+  rdfs:label "PulsV*bCep";
+  rdfs:comment "beta Cep Variable";
+  rdfs:subClassOf <#ma-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#bC%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/148>.
+
+<#puls-v-star-del-sct> a rdfs:Class;
+  rdfs:label "PulsV*delSct";
+  rdfs:comment "delta Sct Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/370>;
+  rdfs:subClassOf <#ms-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#dS%2A>.
+
+<#puls-v-star-rvtau> a rdfs:Class;
+  rdfs:label "PulsV*RVTau";
+  rdfs:comment "RV Tauri Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RV%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1418>.
+
+<#puls-v-star-sx> a rdfs:Class;
+  rdfs:label "pulsV*SX";
+  rdfs:comment "SX Phe Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/1673>;
+  rdfs:subClassOf <#blue-straggler>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SX%2A>.
+
+<#puls-v-star-wvir> a rdfs:Class;
+  rdfs:label "PulsV*WVir";
+  rdfs:comment "Type II Cepheid Variable";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#WV%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1784>.
+
+<#pulsar> a rdfs:Class;
+  rdfs:label "Pulsar";
+  rdfs:comment "Pulsar";
+  rdfs:subClassOf <#neutron-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Psr>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1306>.
+
+<#qso> a rdfs:Class;
+  rdfs:label "QSO";
+  rdfs:comment "Quasar";
+  skos:exactMatch <http://astrothesaurus.org/uat/1319>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#agn>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#QSO>.
+
+<#radio> a rdfs:Class;
+  rdfs:label "Radio";
+  rdfs:comment "Radio Source";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Rad>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1358>.
+
+<#radio-burst> a rdfs:Class;
+  rdfs:label "radioBurst";
+  rdfs:comment "Radio Burst";
+  rdfs:subClassOf <#radio>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#rB>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1339>.
+
+<#radio-cm> a rdfs:Class;
+  rdfs:label "Radio(cm)";
+  rdfs:comment "Centimetric Radio Source";
+  rdfs:subClassOf <#radio>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#cm>;
+  ivoasem:preliminary ":__".
+
+<#radio-g> a rdfs:Class;
+  rdfs:label "RadioG";
+  rdfs:comment "Radio Galaxy";
+  skos:exactMatch <http://astrothesaurus.org/uat/1343>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#agn>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#rG>.
+
+<#radio-m> a rdfs:Class;
+  rdfs:label "Radio(m)";
+  rdfs:comment "Metric Radio Source";
+  rdfs:subClassOf <#radio>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#mR>;
+  ivoasem:preliminary ":__".
+
+<#radio-mm> a rdfs:Class;
+  rdfs:label "Radio(mm)";
+  rdfs:comment "Millimetric Radio Source";
+  rdfs:subClassOf <#radio>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#mm>.
+
+<#radio-sub-mm> a rdfs:Class;
+  rdfs:label "Radio(sub-mm)";
+  rdfs:comment "Sub-Millimetric Source";
+  rdfs:subClassOf <#radio>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#smm>.
+
+<#red-sg-star> a rdfs:Class;
+  rdfs:label "RedSG*";
+  rdfs:comment "Red Supergiant";
+  skos:exactMatch <http://astrothesaurus.org/uat/1375>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#sg-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#s%2Ar>.
+
+<#region> a rdfs:Class;
+  rdfs:label "Region";
+  rdfs:comment "Region defined in the Sky";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#reg>;
+  ivoasem:preliminary ":__".
+
+<#rf-neb> a rdfs:Class;
+  rdfs:label "RfNeb";
+  rdfs:comment "Reflection Nebula";
+  rdfs:subClassOf <#gal-neb>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RNe>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1381>.
+
+<#rg-b-star> a rdfs:Class;
+  rdfs:label "RGB*";
+  rdfs:comment "Red Giant Branch star";
+  skos:exactMatch <http://astrothesaurus.org/uat/1372>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RG%2A>.
+
+<#rot-v-star> a rdfs:Class;
+  rdfs:label "RotV*";
+  rdfs:comment "Rotating Variable";
+  rdfs:subClassOf <#v-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Ro%2A>.
+
+<#rot-v-star-alf2cvn> a rdfs:Class;
+  rdfs:label "RotV*alf2CVn";
+  rdfs:comment "alpha2 CVn Variable";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/27>;
+  rdfs:subClassOf <#pec-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#a2%2A>.
+
+<#rr-lyr> a rdfs:Class;
+  rdfs:label "RRLyr";
+  rdfs:comment "RR Lyrae Variable";
+  rdfs:subClassOf <#hb-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RR%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1410>.
+
+<#rs-cvn> a rdfs:Class;
+  rdfs:label "RSCVn";
+  rdfs:comment "RS CVn Variable";
+  skos:exactMatch <http://astrothesaurus.org/uat/1416>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#RS%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>.
+
+<#s-star> a rdfs:Class;
+  rdfs:label "S*";
+  rdfs:comment "S Star";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1421>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#S%2A>.
+
+<#sb-star> a rdfs:Class;
+  rdfs:label "SB*";
+  rdfs:comment "Spectroscopic Binary";
+  skos:exactMatch <http://astrothesaurus.org/uat/1557>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SB%2A>;
+  rdfs:subClassOf <#multiple-star>.
+
+<#seyfert> a rdfs:Class;
+  rdfs:label "Seyfert";
+  rdfs:comment "Seyfert Galaxy";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#agn>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1447>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SyG>.
+
+<#seyfert-1> a rdfs:Class;
+  rdfs:label "Seyfert_1";
+  rdfs:comment "Seyfert 1 Galaxy";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#seyfert>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Sy1>.
+
+<#seyfert-2> a rdfs:Class;
+  rdfs:label "Seyfert_2";
+  rdfs:comment "Seyfert 2 Galaxy";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Sy2>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#seyfert>.
+
+<#sfregion> a rdfs:Class;
+  rdfs:label "SFregion";
+  rdfs:comment "Star Forming Region";
+  skos:exactMatch <http://astrothesaurus.org/uat/1565>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SFR>.
+
+<#sg-star> a rdfs:Class;
+  rdfs:label "SG*";
+  rdfs:comment "Evolved Supergiant";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#sg%2A>;
+  rdfs:subClassOf <#ma-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1661>;
+  ivoasem:preliminary ":__".
+
+<#sn> a rdfs:Class;
+  rdfs:label "SN";
+  rdfs:comment "SuperNova";
+  skos:exactMatch <http://astrothesaurus.org/uat/1668>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SN%2A>.
+
+<#sn-r> a rdfs:Class;
+  rdfs:label "SNR";
+  rdfs:comment "SuperNova Remnant";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SNR>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#ism>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1667>.
+
+<#star> a rdfs:Class;
+  rdfs:label "Star";
+  rdfs:comment "Star";
+  skos:exactMatch <http://astrothesaurus.org/uat/1634>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#%2A>.
+
+<#starburst-g> a rdfs:Class;
+  rdfs:label "StarburstG";
+  rdfs:comment "Starburst Galaxy";
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#galaxy>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1570>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SBG>.
+
+<#stream-star> a rdfs:Class;
+  rdfs:label "Stream*";
+  rdfs:comment "Stellar Stream";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#St%2A>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#assoc-star>.
+
+<#super-cl-g> a rdfs:Class;
+  rdfs:label "SuperClG";
+  rdfs:comment "Supercluster of Galaxies";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#SCG>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1657>.
+
+<#symbiotic-star> a rdfs:Class;
+  rdfs:label "Symbiotic*";
+  rdfs:comment "Symbiotic Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Sy%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1674>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#multiple-star>.
+
+<#transient> a rdfs:Class;
+  rdfs:label "Transient";
+  rdfs:comment "Transient Event";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#ev>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1851>.
+
+<#ttau-star> a rdfs:Class;
+  rdfs:label "TTau*";
+  rdfs:comment "T Tauri Star";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1681>;
+  rdfs:subClassOf <#yso>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#TT%2A>.
+
+<#ul-x> a rdfs:Class;
+  rdfs:label "ULX";
+  rdfs:comment "Ultra-luminous X-ray Source";
+  rdfs:subClassOf <#x>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#ULX>.
+
+<#unknown> a rdfs:Class;
+  rdfs:label "Unknown";
+  rdfs:comment "Object of Unknown Nature";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#%3F>.
+
+<#uv> a rdfs:Class;
+  rdfs:label "UV";
+  rdfs:comment "UV-emission Source";
+  skos:exactMatch <http://astrothesaurus.org/uat/1741>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#UV>.
+
+<#v-star> a rdfs:Class;
+  rdfs:label "V*";
+  rdfs:comment "Variable Star";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#V%2A>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1761>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>.
+
+<#void> a rdfs:Class;
+  rdfs:label "Void";
+  rdfs:comment "Underdense Region of the Universe";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#vid>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1779>.
+
+<#wd-star> a rdfs:Class;
+  rdfs:label "WD*";
+  rdfs:comment "White Dwarf";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#WD%2A>;
+  rdfs:subClassOf <#ev-star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1799>.
+
+<#wr-star> a rdfs:Class;
+  rdfs:label "WR*";
+  rdfs:comment "Wolf-Rayet";
+  rdfs:subClassOf <#blue-sg-star>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1806>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#WR%2A>.
+
+<#x> a rdfs:Class;
+  rdfs:label "X";
+  rdfs:comment "X-ray Source";
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1822>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#X>.
+
+<#xb> a rdfs:Class;
+  rdfs:label "XB";
+  rdfs:comment "X-ray Binary";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#XB%2A>;
+  ivoasem:preliminary ":__";
+  skos:exactMatch <http://astrothesaurus.org/uat/1811>;
+  rdfs:subClassOf <#multiple-star>.
+
+<#yellow-sg-star> a rdfs:Class;
+  rdfs:label "YellowSG*";
+  rdfs:comment "Yellow Supergiant";
+  skos:exactMatch <http://astrothesaurus.org/uat/522>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#sg-star>;
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#s%2Ay>.
+
+<#yso> a rdfs:Class;
+  rdfs:label "YSO";
+  rdfs:comment "Young Stellar Object";
+  skos:exactMatch <http://simbad.u-strasbg.fr/simbad/otypes#Y%2AO>;
+  ivoasem:preliminary ":__";
+  rdfs:subClassOf <#star>;
+  skos:exactMatch <http://astrothesaurus.org/uat/1834>.
+
