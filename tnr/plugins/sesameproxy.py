@@ -46,16 +46,20 @@ class SesameProxyResolver(Resolver):
             object_type = str(result_table[0]['OTYPE']).strip()
             # query rdf ivoa data
             ivoa_ttl_path = os.environ.get("IVOA_RDF_DATA", None)
+            object_links = None
             if ivoa_ttl_path is not None:
+                links = None
                 G = rdflib.Graph()
                 G.parse(ivoa_ttl_path, format="ttl")
                 label_matches_list = list(G[:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'):rdflib.Literal(object_type)])
-                links = []
                 if len(label_matches_list) == 1:
                     exact_matches_links = list(G[label_matches_list[0]:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#exactMatch')])
                     for link in exact_matches_links:
+                        if links is None:
+                            links = []
                         links.append(str(link))
-            object_links = ",".join(links)
+                if links is not None:
+                    object_links = ",".join(links)
 
 
         except ValueError:
