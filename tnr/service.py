@@ -108,6 +108,13 @@ def timespan_byname_v11(name):
                 object_links = resolver_data['object_links']
             break
 
+    object_ids=None
+    for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
+        resolver_data = data.get(resolver_name)
+        if 'oids' in resolver_data:
+            object_ids = resolver_data['oids']
+            break
+
     have_time = False
     if mjd is not None and duration is not None:
         viewing_range=dict(
@@ -137,6 +144,7 @@ def timespan_byname_v11(name):
                 dec=dec,
                 object_type=object_type,
                 object_links=object_links,
+                objecty_ids=object_ids,
                 have_coordinates=have_coordinates,
             ))
 
