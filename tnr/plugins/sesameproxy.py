@@ -29,7 +29,7 @@ class SesameProxyResolver(Resolver):
                         content="exception accessing Simbad: "+repr(e),
                     )
 
-        if result_table is None or len(result_table) == 0 :
+        if result_table is None or len(result_table) == 0:
             return dict(
                         success=False,
                         content="simbad found no sources",
@@ -66,6 +66,11 @@ class SesameProxyResolver(Resolver):
                         success=False,
                         content="simbad found but no coordinates "+repr(result_table),
                     )
+        try:
+            object_ids_table = Simbad.query_objectids(name)
+            source_ids_list = object_ids_table['ID'].tolist()
+        except ValueError:
+            source_ids_list = []
 
         try:
             return dict(
@@ -74,6 +79,7 @@ class SesameProxyResolver(Resolver):
                         [('dec_deg',source_coord.dec.deg[0])]+
                         [('origin',result_table['COO_BIBCODE'][0])]+
                         [('otype', object_type)]+
+                        [('oids', source_ids_list)]+
                         [('otype_links', object_links)]
                     )
         except Exception as e:
