@@ -44,6 +44,7 @@ def start_resolver(rootdir):
     print(("pythonpath", env['PYTHONPATH']))
     env['POLAR_GRB_DATA_CSV'] = 'data/polar/polar_grbs.csv'
     env['TNR_PLUGIN_GWPROXY_ENABLED'] = 'yes'
+    env['IVOA_RDF_DATA'] = 'data/ivoa_rdf_data/object-type.ttl'
 
     fn = os.path.join(__this_dir__, "../tnr/service.py")
     cmd = [

@@ -124,9 +124,20 @@ def test_byname_11(resolver_live_fixture, source_name):
     logger.info('Json output content')
     logger.info(json.dumps(jdata, indent=4))
 
+    assert 'have_coordinates' in jdata
+    assert 'object_type' in jdata
+    assert 'object_links' in jdata
+    assert 'object_ids' in jdata
+
     if source_name != 'aaaaaa':
         assert jdata['success'] is True
-        assert 'object_type' in jdata
-        assert 'object_links' in jdata
+        assert jdata['have_coordinates'] is True
+        assert jdata['object_type'] is not None
+        assert jdata['object_ids'] is not None
+        assert jdata['object_links'] is not None
     else:
         assert jdata['success'] is False
+        assert jdata['have_coordinates'] is False
+        assert jdata['object_type'] is None
+        assert jdata['object_ids'] is None
+        assert jdata['object_links'] is None
