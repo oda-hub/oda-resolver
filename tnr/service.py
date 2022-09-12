@@ -70,7 +70,6 @@ def timespan_byname_v11(name):
         mjds[resolver]=event.get('mjd')
         durations[resolver]=event.get('duration','100')
 
-    
     if data.get('polargrbs.PolarResolver').get('success', False) is True:
         utc=data.get('polargrbs.PolarResolver').get('utc')
         mjd=data.get('polargrbs.PolarResolver').get('mjd')
@@ -90,14 +89,23 @@ def timespan_byname_v11(name):
     ra=None
     dec=None
     have_coordinates=False
+    object_type=None
+    object_links=None
+    object_ids=None
     for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
         resolver_data = data.get(resolver_name)
-        if 'ra_deg' in resolver_data and 'dec_deg' in resolver_data:
+        if have_coordinates is False and 'ra_deg' in resolver_data and 'dec_deg' in resolver_data:
             ra = resolver_data['ra_deg']
             dec = resolver_data['dec_deg']
             have_coordinates = True
-            break
-        
+
+        if 'otype' in resolver_data:
+            object_type = resolver_data['otype']
+            if 'otype_links' in resolver_data:
+                object_links = resolver_data['otype_links']
+
+        if 'oids' in resolver_data:
+            object_ids = resolver_data['oids']
 
     have_time = False
     if mjd is not None and duration is not None:
@@ -126,6 +134,9 @@ def timespan_byname_v11(name):
                 view=viewing_range,
                 ra=ra,
                 dec=dec,
+                object_type=object_type,
+                object_links=object_links,
+                object_ids=object_ids,
                 have_coordinates=have_coordinates,
             ))
 

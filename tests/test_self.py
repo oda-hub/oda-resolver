@@ -1,5 +1,10 @@
 import pytest
+import logging
+import json
+
 from flask import url_for
+
+logger = logging.getLogger(__name__)
 
 def test_unknown(client):
 
@@ -104,3 +109,32 @@ def test_gw(client):
     assert r.json['mjds']['gwproxy.GWProxyResolver'] is not None
     assert r.json['success'] == True
     assert r.json['success_time'] == True
+
+
+@pytest.mark.parametrize('source_name', ['Crab', 'Mrk 421', 'aaaaaa'])
+def test_byname_11(client, source_name):
+
+    c = client.get(url_for('timespan_byname_v11', name=source_name))
+
+    jdata = c.json
+
+    logger.info('Json output content')
+    logger.info(json.dumps(jdata, indent=4))
+
+    assert 'have_coordinates' in jdata
+    assert 'object_type' in jdata
+    assert 'object_links' in jdata
+    assert 'object_ids' in jdata
+
+    if source_name != 'aaaaaa':
+        assert jdata['success'] is True
+        assert jdata['have_coordinates'] is True
+        assert jdata['object_type'] is not None
+        assert jdata['object_ids'] is not None
+        assert jdata['object_links'] is not None
+    else:
+        assert jdata['success'] is False
+        assert jdata['have_coordinates'] is False
+        assert jdata['object_type'] is None
+        assert jdata['object_ids'] is None
+        assert jdata['object_links'] is None
