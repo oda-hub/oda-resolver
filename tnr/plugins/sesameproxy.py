@@ -1,12 +1,8 @@
-import requests
-
-from tnr.resolvers import Resolver
-
 import os
 import rdflib
 
+from tnr.resolvers import Resolver
 from astroquery.simbad import Simbad
-import astropy.units as u
 from astropy.coordinates import SkyCoord
 
 plugin_disabled = os.environ.get('TNR_PLUGIN_SESAMEPROXY_ENABLED','no') == 'yes'
