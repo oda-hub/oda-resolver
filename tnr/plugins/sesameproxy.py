@@ -42,25 +42,19 @@ class SesameProxyResolver(Resolver):
             object_type = str(result_table[0]['OTYPE']).strip()
             # query rdf ivoa data
             ivoa_ttl_path = os.environ.get("IVOA_RDF_DATA", None)
-            object_links = None
+            links = []
             if ivoa_ttl_path is not None:
-                links = None
                 G = rdflib.Graph()
                 G.parse(ivoa_ttl_path, format="ttl")
-                label_matches_list = list(G[:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'):rdflib.Literal(object_type)])
-                if len(label_matches_list) == 1:
-                    exact_matches_links = list(G[label_matches_list[0]:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#exactMatch')])
-                    for link in exact_matches_links:
-                        if links is None:
-                            links = []
-                        links.append(str(link))
-                if links is not None:
-                    object_links = ",".join(links)
+
+                for label_match in G[:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'):rdflib.Literal(object_type)]:
+                    links.extend([str(link) for link in G[label_match[0]:rdflib.URIRef(
+                        'http://www.w3.org/2000/01/rdf-schema#exactMatch')]])
 
         except ValueError:
             return dict(
                         success=False,
-                        content="simbad found but no coordinates "+repr(result_table),
+                        content="simbad found but no coordinates " + repr(result_table)
                     )
         try:
             object_ids_table = Simbad.query_objectids(name)
@@ -76,7 +70,7 @@ class SesameProxyResolver(Resolver):
                         [('origin',result_table['COO_BIBCODE'][0])]+
                         [('otype', object_type)]+
                         [('oids', source_ids_list)]+
-                        [('otype_links', object_links)]
+                        [('otype_links', links)]
                     )
         except Exception as e:
             return dict(
