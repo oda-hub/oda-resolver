@@ -1,7 +1,5 @@
 import pytest
-import requests
 import logging
-import os
 import json
 
 from flask import url_for
