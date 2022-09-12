@@ -48,8 +48,8 @@ class SesameProxyResolver(Resolver):
                 G.parse(ivoa_ttl_path, format="ttl")
 
                 for label_match in G[:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'):rdflib.Literal(object_type)]:
-                    links.extend([str(link) for link in G[label_match[0]:rdflib.URIRef(
-                        'http://www.w3.org/2000/01/rdf-schema#exactMatch')]])
+                    links.extend([str(link) for link in G[label_match:rdflib.URIRef(
+                        'http://www.w3.org/2004/02/skos/core#exactMatch')]])
 
         except ValueError:
             return dict(

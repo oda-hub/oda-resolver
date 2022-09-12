@@ -70,7 +70,6 @@ def timespan_byname_v11(name):
         mjds[resolver]=event.get('mjd')
         durations[resolver]=event.get('duration','100')
 
-    
     if data.get('polargrbs.PolarResolver').get('success', False) is True:
         utc=data.get('polargrbs.PolarResolver').get('utc')
         mjd=data.get('polargrbs.PolarResolver').get('mjd')
@@ -102,8 +101,8 @@ def timespan_byname_v11(name):
 
         if 'otype' in resolver_data:
             object_type = resolver_data['otype']
-            if 'object_links' in resolver_data:
-                object_links = resolver_data['object_links']
+            if 'otype_links' in resolver_data:
+                object_links = resolver_data['otype_links']
 
         if 'oids' in resolver_data:
             object_ids = resolver_data['oids']
@@ -137,7 +136,7 @@ def timespan_byname_v11(name):
                 dec=dec,
                 object_type=object_type,
                 object_links=object_links,
-                objecty_ids=object_ids,
+                object_ids=object_ids,
                 have_coordinates=have_coordinates,
             ))
 
