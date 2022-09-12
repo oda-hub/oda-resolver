@@ -1,10 +1,11 @@
 Pyro4
 peewee
 requests
-flask
+flask>=2.0.3
 astropy
 astroquery
 pandas
 lxml
+psutil
 beautifulsoup4
 rdflib
