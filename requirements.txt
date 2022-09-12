@@ -2,6 +2,7 @@ Pyro4
 peewee
 requests
 flask>=2.0.3
+pytest-flask
 astropy
 astroquery
 pandas
