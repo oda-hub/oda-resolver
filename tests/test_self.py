@@ -114,12 +114,11 @@ def test_gw(client):
 
 
 @pytest.mark.parametrize('source_name', ['Crab', 'Mrk 421', 'aaaaaa'])
-def test_byname_11(resolver_live_fixture, source_name):
-    server = resolver_live_fixture
+def test_byname_11(client, source_name):
 
-    c = requests.get(os.path.join(server, f"api/v1.1/byname/{source_name}"))
+    c = client.get(url_for('timespan_byname_v11', name=source_name))
 
-    jdata = c.json()
+    jdata = c.json
 
     logger.info('Json output content')
     logger.info(json.dumps(jdata, indent=4))
