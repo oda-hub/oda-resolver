@@ -125,6 +125,7 @@ def test_byname_11(client, source_name):
     assert 'object_type' in jdata
     assert 'object_links' in jdata
     assert 'object_ids' in jdata
+    assert 'main_id' in jdata
 
     if source_name != 'aaaaaa':
         assert jdata['success'] is True
@@ -132,9 +133,30 @@ def test_byname_11(client, source_name):
         assert jdata['object_type'] is not None
         assert jdata['object_ids'] is not None
         assert jdata['object_links'] is not None
+        assert jdata['main_id'] is not None
     else:
         assert jdata['success'] is False
         assert jdata['have_coordinates'] is False
         assert jdata['object_type'] is None
         assert jdata['object_ids'] is None
         assert jdata['object_links'] is None
+        assert jdata['main_id'] is None
+
+
+@pytest.mark.parametrize('source_name', ['Mrk_421', 'Mrk 421', 'Mrk421'])
+def test_byname_11_same_source_different_name(client, source_name):
+
+    c = client.get(url_for('timespan_byname_v11', name=source_name))
+
+    jdata = c.json
+
+    logger.info('Json output content')
+    logger.info(json.dumps(jdata, indent=4))
+
+    assert 'have_coordinates' in jdata
+    assert 'object_type' in jdata
+    assert 'object_links' in jdata
+    assert 'object_ids' in jdata
+    assert 'main_id' in jdata
+
+    assert jdata['main_id'] == 'Mrk  421'
