@@ -40,6 +40,7 @@ class SesameProxyResolver(Resolver):
         try:
             source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
             object_type = str(result_table[0]['OTYPE']).strip()
+            main_id = str(result_table[0]['MAIN_ID']).strip()
             # query rdf ivoa data
             ivoa_ttl_path = os.environ.get("IVOA_RDF_DATA", None)
             links = []
@@ -69,6 +70,7 @@ class SesameProxyResolver(Resolver):
                         [('dec_deg',source_coord.dec.deg[0])]+
                         [('origin',result_table['COO_BIBCODE'][0])]+
                         [('otype', object_type)]+
+                        [('main_id', main_id)]+
                         [('oids', source_ids_list)]+
                         [('otype_links', links)]
                     )
