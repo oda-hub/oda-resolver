@@ -44,11 +44,14 @@ class SesameProxyResolver(Resolver):
             # query rdf ivoa data
             ivoa_ttl_path = os.environ.get("IVOA_RDF_DATA", None)
             links = []
+            ivoa_object_description = []
             if ivoa_ttl_path is not None:
                 G = rdflib.Graph()
                 G.parse(ivoa_ttl_path, format="ttl")
 
                 for label_match in G[:rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#label'):rdflib.Literal(object_type)]:
+                    ivoa_object_description.extend([str(link) for link in G[label_match:rdflib.URIRef(
+                        'http://www.w3.org/2000/01/rdf-schema#comment')]])
                     links.extend([str(link) for link in G[label_match:rdflib.URIRef(
                         'http://www.w3.org/2004/02/skos/core#exactMatch')]])
 
@@ -72,7 +75,8 @@ class SesameProxyResolver(Resolver):
                         [('otype', object_type)]+
                         [('main_id', main_id)]+
                         [('oids', source_ids_list)]+
-                        [('otype_links', links)]
+                        [('otype_links', links)]+
+                        [('otype_description', ivoa_object_description)]
                     )
         except Exception as e:
             return dict(
