@@ -91,7 +91,10 @@ def timespan_byname_v11(name):
     have_coordinates=False
     object_type=None
     object_links=None
+    object_description=None
+    object_term=None
     object_ids=None
+    main_id=None
     for resolver_name in 'sesameproxy.SesameProxyResolver', 'gcproxy.GCProxyResolver':
         resolver_data = data.get(resolver_name)
         if have_coordinates is False and 'ra_deg' in resolver_data and 'dec_deg' in resolver_data:
@@ -103,9 +106,14 @@ def timespan_byname_v11(name):
             object_type = resolver_data['otype']
             if 'otype_links' in resolver_data:
                 object_links = resolver_data['otype_links']
+            if 'otype_description' in resolver_data:
+                object_description = resolver_data['otype_description']
 
         if 'oids' in resolver_data:
             object_ids = resolver_data['oids']
+
+        if 'main_id' in resolver_data:
+            main_id = resolver_data['main_id']
 
     have_time = False
     if mjd is not None and duration is not None:
@@ -125,6 +133,7 @@ def timespan_byname_v11(name):
                 success=have_time or have_coordinates,
                 success_time=have_time,
                 success_coordinates=have_coordinates,
+                main_id=main_id,
                 utcs=utcs,
                 mjds=mjds,
                 durations=durations,
@@ -136,6 +145,8 @@ def timespan_byname_v11(name):
                 dec=dec,
                 object_type=object_type,
                 object_links=object_links,
+                object_description=object_description,
+                object_term=object_term,
                 object_ids=object_ids,
                 have_coordinates=have_coordinates,
             ))
