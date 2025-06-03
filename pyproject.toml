@@ -31,4 +31,4 @@ dependencies = [
 test = ["pytest-flask"]
 
 [tool.setuptools]
-packages = ["tnr"]
+packages = ["tnr", "tnr.plugins"]
