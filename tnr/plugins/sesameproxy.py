@@ -38,9 +38,13 @@ class SesameProxyResolver(Resolver):
                     )
 
         try:
-            source_coord = SkyCoord(result_table['RA'],result_table['DEC'],unit=("hourangle","deg"))
-            object_type = str(result_table[0]['OTYPE']).strip()
-            main_id = str(result_table[0]['MAIN_ID']).strip()
+            ra = result_table['ra'] if 'ra' in result_table.keys() else result_table['RA']
+            dec = result_table['dec'] if 'dec' in result_table.keys() else result_table['DEC']
+            source_coord = SkyCoord(ra, dec, unit=("hourangle","deg"))
+            otype = result_table[0]['otype'] if 'otype' in result_table[0].keys() else result_table[0]['OTYPE']
+            object_type = str(otype).strip()
+            mid = result_table[0]['main_id'] if 'main_id' in result_table[0].keys() else result_table[0]['MAIN_ID']
+            main_id = str(mid).strip()
             # query rdf ivoa data
             ivoa_ttl_path = os.environ.get("IVOA_RDF_DATA", None)
             links = []
@@ -62,16 +66,18 @@ class SesameProxyResolver(Resolver):
                     )
         try:
             object_ids_table = Simbad.query_objectids(name)
-            source_ids_list = object_ids_table['ID'].tolist()
+            oidt = object_ids_table['id'] if 'id' in object_ids_table.keys() else object_ids_table['ID']
+            source_ids_list = oidt.tolist()
         except ValueError:
             source_ids_list = []
 
         try:
+            coo = result_table['COO_BIBCODE'][0] if 'COO_BIBCODE' in result_table.keys() else result_table['coo_bibcode'][0]
             return dict(
                         [('success',True)]+
                         [('ra_deg',source_coord.ra.deg[0])]+
                         [('dec_deg',source_coord.dec.deg[0])]+
-                        [('origin',result_table['COO_BIBCODE'][0])]+
+                        [('origin',coo)]+
                         [('otype', object_type)]+
                         [('main_id', main_id)]+
                         [('oids', source_ids_list)]+

@@ -21,7 +21,7 @@ class PolarResolver(Resolver):
         self.polar_grbs=dict([
                             (k,dict([
                                         [c,r.values[0]]
-                                        for c,r in v.iteritems()
+                                        for c,r in v.items()
                                     ]))
                             for k,v in pd.read_csv(os.environ.get("POLAR_GRB_DATA_CSV"), engine='python').groupby("name")
                         ])

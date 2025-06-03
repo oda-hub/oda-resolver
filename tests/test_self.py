@@ -26,16 +26,6 @@ def test_known(client):
     assert r.json['polargrbs.PolarResolver']['success'] == True
     #assert r.json['gcproxy.GCProxyResolver']['success'] == True
 
-def test_known(client):
-
-    r=client.get(url_for('resolve',name='GRB170114B'))
-
-    assert r.status_code == 200
-    print(r.json)
-
-    assert r.json['polargrbs.PolarResolver']['success'] == True
-    #assert r.json['gcproxy.GCProxyResolver']['success'] == True
-
 def test_known_timespan(client):
 
     r=client.get(url_for('timespan_byname_v11',name='GRB170114B'))
