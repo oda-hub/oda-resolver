@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tnr"
+version = "1.0.1"
+description = "Transient Name Resolver"
+readme = "README.md"
+authors = [
+    { name = "Volodymyr Savchenko", email = "vladimir.savchenko@gmail.com" },
+    { name = "Denys Savchenko", email = "savchenko@apc.in2p3.fr" }
+]
+license = "MIT"
+keywords = ["astronomy"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+]
+
+dependencies = [
+    "requests",
+    "flask>=2.0.3",
+    "astropy",
+    "astroquery",
+    "pandas>=2.0",
+    "rdflib"
+]
+
+[project.optional-dependencies]
+test = ["pytest-flask"]
+
+[tool.setuptools]
+packages = ["tnr"]
