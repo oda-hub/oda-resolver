@@ -11,6 +11,7 @@ on:
       - '.github/workflows/docker-publish.yml'
   pull_request:
     branches: [ master ]
+    types: [opened, synchronize, labeled]
     paths:
       - 'Dockerfile'
       - 'pyproject.toml'
@@ -25,6 +26,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      pull-requests: read
 
     steps:
       - name: Checkout repository
@@ -33,8 +35,24 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Get branch name
+        id: branch
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+          else
+            echo "name=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for publish-container label
+        id: check_label
+        if: github.event_name == 'pull_request'
+        uses: actions-ecosystem/action-has-label@v1
+        with:
+          labels: publish-container
+
       - name: Log in to GitHub Container Registry
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || (github.event_name == 'pull_request' && steps.check_label.outputs.has_label == 'true')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -56,8 +74,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: ${{ github.event_name == 'push' }}
+          push: ${{ github.event_name == 'push' || (github.event_name == 'pull_request' && steps.check_label.outputs.has_label == 'true') }}
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.timestamp.outputs.ts }}
+            ${{ github.event_name == 'push' && format('ghcr.io/{0}:latest', github.repository) || '' }}
+            ${{ format('ghcr.io/{0}:{1}-{2}', github.repository, steps.branch.outputs.name, steps.timestamp.outputs.ts) }}
           labels: ${{ steps.meta.outputs.labels }}
