@@ -101,9 +101,9 @@ def test_gw(client):
     assert r.json['success'] == True
     assert r.json['success_time'] == True
     if r.json['ra'] is not None:
-        assert ~np.isnan(r.json['ra'])
+        assert not np.isnan(r.json['ra'])
     if r.json['dec'] is not None:
-        assert ~np.isnan(r.json['dec'])
+        assert not np.isnan(r.json['dec'])
 
 
 @pytest.mark.parametrize('source_name', ['Crab', 'Mrk 421', 'aaaaaa'])

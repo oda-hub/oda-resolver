@@ -81,9 +81,9 @@ class SesameProxyResolver(Resolver):
                    'oids': source_ids_list,
                    'otype_links': links,
                    'otype_description': ivoa_object_description}
-            if ~np.isnan(source_coord.ra.deg[0]):
+            if not np.isnan(source_coord.ra.deg[0]):
                 rsp['ra_deg'] = source_coord.ra.deg[0]
-            if ~np.isnan(source_coord.dec.deg[0]):
+            if not np.isnan(source_coord.dec.deg[0]):
                 rsp['dec_deg'] = source_coord.dec.deg[0]
             return rsp
                     
