@@ -1,5 +1,6 @@
 import os
 import rdflib
+import numpy as np
 
 from tnr.resolvers import Resolver
 from astroquery.simbad import Simbad
@@ -73,17 +74,19 @@ class SesameProxyResolver(Resolver):
 
         try:
             coo = result_table['COO_BIBCODE'][0] if 'COO_BIBCODE' in result_table.keys() else result_table['coo_bibcode'][0]
-            return dict(
-                        [('success',True)]+
-                        [('ra_deg',source_coord.ra.deg[0])]+
-                        [('dec_deg',source_coord.dec.deg[0])]+
-                        [('origin',coo)]+
-                        [('otype', object_type)]+
-                        [('main_id', main_id)]+
-                        [('oids', source_ids_list)]+
-                        [('otype_links', links)]+
-                        [('otype_description', ivoa_object_description)]
-                    )
+            rsp = {'success':True,
+                   'origin':coo,
+                   'otype': object_type,
+                   'main_id': main_id,
+                   'oids': source_ids_list,
+                   'otype_links': links,
+                   'otype_description': ivoa_object_description}
+            if not np.isnan(source_coord.ra.deg[0]):
+                rsp['ra_deg'] = source_coord.ra.deg[0]
+            if not np.isnan(source_coord.dec.deg[0]):
+                rsp['dec_deg'] = source_coord.dec.deg[0]
+            return rsp
+                    
         except Exception as e:
             return dict(
                     success=False,
