@@ -1,11 +1,14 @@
 import requests
 from tnr.resolvers import Resolver
-import os
+from tnr.config import settings
 from astropy.time import Time
 
-plugin_enabled = os.environ.get('TNR_PLUGIN_GWPROXY_ENABLED','no') == 'yes'
+plugin_enabled_config = settings.get('PLUGIN_GWPROXY_ENABLED', 'no')
+plugin_enabled = str(plugin_enabled_config).lower() in ['yes', 'true']
+
 resolveurl = "https://www.gw-openscience.org/eventapi/json/query/show?name-contains={name}"
-used_catalogs = ['GWTC-1-confident', 'GWTC-2', 'GWTC-3-confident']
+confident_catalogues = ['GWTC-4.0', 'GWTC-1-confident', 'GWTC-2', 'GWTC-3-confident']
+used_catalogs = settings.get('GWPROXY_CATALOGS', confident_catalogues)
 
 class GWProxyResolver(Resolver):
         
