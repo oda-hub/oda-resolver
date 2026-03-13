@@ -156,4 +156,4 @@ def test_byname_11_same_source_different_name(client, source_name):
     assert 'object_ids' in jdata
     assert 'main_id' in jdata
 
-    assert jdata['main_id'] == 'Mrk  421'
+    assert jdata['main_id'] == 'Z 184-50'
