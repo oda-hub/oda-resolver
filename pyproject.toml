@@ -24,7 +24,8 @@ dependencies = [
     "astropy",
     "astroquery",
     "pandas>=2.0",
-    "rdflib"
+    "rdflib",
+    "dynaconf"
 ]
 
 [project.optional-dependencies]
